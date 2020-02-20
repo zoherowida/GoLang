@@ -12,7 +12,7 @@ import (
 
 type User struct {
 	ID        uint32    `gorm:"primary_id;auto_increment" json:"id"`
-	Name      string    `gorm:"size:20;not null;unique" json:"name"`
+	Name      string    `gorm:"size:20;not null" json:"name"`
 	Email     string    `gorm:"size:100;not null;unique" json:"email"`
 	Password  string    `gorm:"size:60;not null" json:"password,omitempty"`
 	CreatedAt time.Time `gorm:"default:current_timestamp()" json:"created_at"`
@@ -56,12 +56,12 @@ func (u *User) Validate(action string) error {
 			return errors.New("Name is required")
 		}
 
-		if u.Password == "" {
-			return errors.New("Password is required")
-		}
-
 		if u.Email == "" {
 			return errors.New("Email is required")
+		}
+
+		if u.Password == "" {
+			return errors.New("Password is required")
 		}
 
 		if err := checkmail.ValidateFormat(u.Email); err != nil {

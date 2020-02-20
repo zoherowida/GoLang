@@ -77,7 +77,7 @@ func (r *repositoryTwittersCRUD) FindByID(uid uint32) (models.Twitter, error) {
 	}
 
 	if gorm.IsRecordNotFoundError(err) {
-		return models.Twitter{}, errors.New("User Not Found")
+		return models.Twitter{}, errors.New("Tweet Not Found")
 	}
 	return models.Twitter{}, err
 }

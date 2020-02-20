@@ -69,6 +69,13 @@ func Register(w http.ResponseWriter, r *http.Request) {
 
 		return
 	}
+	user.Prepare()
+	err = user.Validate("register")
+	if err != nil {
+		responses.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
+	}
+
 	db, err := database.Connect()
 	if err != nil {
 		responses.ERROR(w, http.StatusInternalServerError, err)
