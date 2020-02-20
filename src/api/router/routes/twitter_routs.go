@@ -10,19 +10,19 @@ var twitterRoutes = []Route{
 		Uri:          "/api/twitter/tweets/search",
 		Method:       http.MethodPost,
 		Handler:      controllers.SearchTweets,
-		AuthRequired: false,
+		AuthRequired: true,
 	},
 	Route{
 		Uri:          "/api/twitter/tweets",
 		Method:       http.MethodGet,
 		Handler:      controllers.GetAllTweet,
-		AuthRequired: false,
+		AuthRequired: true,
 	},
 	Route{
 		Uri:          "/api/twitter/tweets",
 		Method:       http.MethodPost,
 		Handler:      controllers.CreateTweet,
-		AuthRequired: false,
+		AuthRequired: true,
 	},
 	Route{
 		Uri:          "/api/twitter/tweets/{id}",
